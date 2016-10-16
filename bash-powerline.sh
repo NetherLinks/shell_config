@@ -86,9 +86,20 @@ __powerline() {
         [ -n "$behindN" ] && marks+=" $GIT_NEED_PULL_SYMBOL$behindN"
 
         # get working tree changes counts
-        local stagedN="$(echo "$git_status" | egrep "^[MADRC]" | wc -l | grep -o '[[:digit:]]\+')"
-        local unstagedN="$(echo "$git_status" | egrep "^[ MADRC][MD]" | wc -l | grep -o '[[:digit:]]\+')"
-        local untrackedN="$(echo "$git_status" | egrep "^[?]" | wc -l | grep -o '[[:digit:]]\+')"
+        NL='
+'
+        case $git_status in
+          *"$NL"*)
+            local stagedN="$(echo "$git_status" | egrep "^[MADRC]" | wc -l | grep -o '[[:digit:]]\+')"
+            local unstagedN="$(echo "$git_status" | egrep "^[ MADRC][MD]" | wc -l | grep -o '[[:digit:]]\+')"
+            local untrackedN="$(echo "$git_status" | egrep "^[?]" | wc -l | grep -o '[[:digit:]]\+')"
+            ;;
+          *)
+            local stagedN=0
+            local unstagedN=0
+            local untrackedN=0
+            ;;
+        esac
         local status_counts="$GIT_STAGED_SYMBOL$stagedN $GIT_UNSTAGED_SYMBOL$unstagedN $GIT_UNTRACKED_SYMBOL$untrackedN"
 
         # get repo name
