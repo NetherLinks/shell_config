@@ -117,6 +117,14 @@ __powerline() {
         printf " $RUBY_VERSION "
       fi
     }
+	
+    __nvm() {
+      if [ -d "$NVM_DIR" ] ; then
+        printf " node-$(nvm_version) "
+      else
+        return
+      fi
+    }
 
     ps1() {
         # Check the exit code of the previous command and display different
@@ -141,6 +149,7 @@ __powerline() {
         PS1="$BOLD$BG_CYAN$FG_BASE3 \t $RESET"
         PS1+="$BG_BASE3$FG_BASE02 \u : \# $RESET"
         PS1+="$BG_ORANGE$FG_BASE3$(__rvm)$RESET"
+        PS1+="$BG_BASE2$FG_BASE02$(__nvm)$RESET"
         PS1+="$BG_BASE03$FG_BASE3 $PS1_WD $RESET"
         PS1+="$BG_BLUE$FG_BASE3$GIT_INFO$RESET"
         PS1+="$BG_EXIT$FG_BASE3 $PS_SYMBOL $RESET "
