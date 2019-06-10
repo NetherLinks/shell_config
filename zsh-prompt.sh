@@ -51,10 +51,7 @@ __powerline() {
     BG_CYAN="%K{6}"
     BG_GREEN="%K{2}"
 
-#     DIM="\[$(tput dim)\]"
-#     REVERSE="\[$(tput rev)\]"
     RESET="%f%k"
-#     BOLD="\[$(tput bold)\]"
 
     # what OS?
     case "$(uname)" in
