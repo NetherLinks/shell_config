@@ -18,6 +18,7 @@ export EDITOR=vim
 export HISTFILESIZE=10000000
 export HISTSIZE=10000000
 export SAVEHIST=10000000
+export PATH="$HOME/.bin:$PATH"
 
 function cd ()
 {
@@ -27,7 +28,7 @@ function cd ()
 function ssh ()
 {
     SSH=`/usr/bin/which ssh`
-    $SSH -v -t $@ "tmux attach -t ${USER::18} || tmux new -s ${USER::18} || bash -l"
+    $SSH -v -t $@ "tmux attach -t ${USER:0:18} || tmux new -s ${USER:0:18} \"zsh -l\" || zsh -l || bash -l"
 }
 
 source ./.zsh-prompt.sh
@@ -44,6 +45,7 @@ alias preview='open -a "Preview"'
 alias which='which -a'
 alias port='port -v'
 alias stree='/Applications/SourceTree.app/Contents/Resources/stree'
+hash -d code="$HOME/code"
 
 # Libraries
 export NVM_DIR="$HOME/.nvm"
