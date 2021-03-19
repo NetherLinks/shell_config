@@ -182,7 +182,7 @@ __powerline() {
       # PS1+="$BG_BASE3$FG_BASE02 %n : $(__num) $RESET"
       PS1+="$BG_BASE3$FG_BASE02 $(__num) $RESET"
       PS1+="$BG_BASE03$FG_BASE3 $PS1_WD $RESET"
-        PS1+="$BG_BLUE$FG_BASE3$GIT_INFO$RESET"
+      PS1+="$BG_BLUE$FG_BASE3$GIT_INFO$RESET"
       PS1+="$BG_EXIT$FG_BASE3 $PS_SYMBOL $RESET "
       RPS1="$BG_ORANGE$FG_BASE3$(__rvm)$RESET"
       RPS1+="$BG_GREEN$FG_BASE02$(__nvm)$RESET"
