@@ -35,16 +35,13 @@ source ./.zsh-prompt.sh
 
 # Aliases
 alias lf="ls -AFGlhOT"
-alias finder="open -a Finder ./"
-alias finderShowHidden='defaults write com.apple.finder AppleShowAllFiles 1'
-alias finderHideHidden='defaults write com.apple.finder AppleShowAllFiles 0'
+alias finder="open -a Finder"
 alias pod='pod --verbose'
 alias rm='rm -i'
 alias rsyncap='rsync -aP'
-alias preview='open -a "Preview"'
+alias preview='open -a Preview'
 alias which='which -a'
 alias port='port -v'
-alias stree='/Applications/SourceTree.app/Contents/Resources/stree'
 hash -d code="$HOME/code"
 
 # Libraries
