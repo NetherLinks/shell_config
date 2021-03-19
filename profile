@@ -6,23 +6,17 @@ HISTSIZE=10000000
 export CLICOLOR=1
 
 alias lf="ls -AFGlhOT"
-alias finder="open -a Finder ./"
-alias finderShowHidden='defaults write com.apple.finder AppleShowAllFiles 1'
-alias finderHideHidden='defaults write com.apple.finder AppleShowAllFiles 0'
-alias startApache='sudo apachectl start'
-alias stopApache='sudo apachectl stop'
+alias finder="open -a Finder"
 alias pod='pod --verbose'
 alias rm='rm -i'
 alias rsyncap='rsync -aP'
-alias preview='open -a "Preview"'
+alias preview='open -a Preview'
 alias which='which -a'
 alias port='port -v'
 alias ..='cd ../'
 alias ...='cd ../../'
 alias ....='cd ../../../'
 alias .....='cd ../../../../'
-alias ffprobe='ffprobe -v debug'
-alias stree='/Applications/SourceTree.app/Contents/Resources/stree'
 
 function cd ()
 {
