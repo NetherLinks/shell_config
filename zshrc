@@ -8,6 +8,7 @@ DISABLE_AUTO_UPDATE="true"
 DISABLE_AUTO_TITLE="true"
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(git osx aws docker kubectl macports node npm ruby rvm tig tmux yarn)
+DISABLE_MAGIC_FUNCTIONS=true
 source $ZSH/oh-my-zsh.sh
 
 # Custom
@@ -31,11 +32,15 @@ function ssh ()
     $SSH -v -t $@ "tmux attach -t ${USER:0:18} || tmux new -s ${USER:0:18} \"zsh -l\" || zsh -l || bash -l"
 }
 
+function finder ()
+{
+    open -a Finder ./
+}
+
 source ./.zsh-prompt.sh
 
 # Aliases
 alias lf="ls -AFGlhOT"
-alias finder="open -a Finder"
 alias pod='pod --verbose'
 alias rm='rm -i'
 alias rsyncap='rsync -aP'
