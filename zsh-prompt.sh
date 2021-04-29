@@ -1,6 +1,8 @@
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 __powerline() {
+    # https://github.com/riobard/bash-powerline/blob/e1b06b9534339b29f657af3cdc0edaaacd27a316/bash-powerline.sh with many modifications.
+
     # Unicode symbols
     PS_SYMBOL_DARWIN=''
     PS_SYMBOL_LINUX='$'

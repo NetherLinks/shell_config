@@ -1,5 +1,5 @@
 __powerline() {
-    # https://github.com/riobard/bash-powerline with some modifications
+    # https://github.com/riobard/bash-powerline/blob/e1b06b9534339b29f657af3cdc0edaaacd27a316/bash-powerline.sh with some modifications
 
     # Unicode symbols
     readonly PS_SYMBOL_DARWIN=''
@@ -117,7 +117,7 @@ __powerline() {
         printf " $RUBY_VERSION "
       fi
     }
-	
+
     __nvm() {
       if [ -d "$NVM_DIR" ] ; then
         printf " node-$(nvm_version) "
