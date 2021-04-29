@@ -144,13 +144,13 @@ __powerline() {
         fi
     }
 
-    setopt PROMPT_SUBST
-    [[ $cmdcount -ge 1 ]] || cmdcount=1
-    preexec() { ((cmdcount++)) }
+    # setopt PROMPT_SUBST
+    # [[ $cmdcount -ge 1 ]] || cmdcount=1
+    # preexec() { ((cmdcount++)) }
 
-    __num() {
-        printf '$cmdcount'
-    }
+    # __num() {
+    #     printf '$cmdcount'
+    # }
 
     ps1() {
         # Check the exit code of the previous command and display different
@@ -179,12 +179,18 @@ __powerline() {
             fi
         fi
 
+        # local CMD_NUM="$(__num)"
+        local RVM_INFO="$(__rvm)"
+        local NVM_INFO="$(__nvm)"
+        local VENV_INFO="$(__venv)"
+
         PS1="$BG_CYAN$FG_BASE3 %* $RESET"
-        # PS1+="$BG_BASE3$FG_BASE02 %n : $(__num) $RESET"
-        PS1+="$BG_BASE3$FG_BASE02 $(__num) $RESET"
-        PS1+="$BG_ORANGE$FG_BASE3$(__rvm)$RESET"
-        PS1+="$BG_GREEN$FG_BASE02$(__nvm)$RESET"
-        PS1+="$BG_BASE3$FG_BASE02$(__venv)$RESET"
+        PS1+="$BG_BASE3$FG_BASE02 %n $RESET"
+        # PS1+="$BG_BASE3$FG_BASE02 %n : $CMD_NUM $RESET"
+        # PS1+="$BG_BASE3$FG_BASE02 $CMD_NUM $RESET"
+        PS1+="$BG_ORANGE$FG_BASE3$RVM_INFO$RESET"
+        PS1+="$BG_GREEN$FG_BASE02$NVM_INFO$RESET"
+        PS1+="$BG_BASE3$FG_BASE02$VENV_INFO$RESET"
         PS1+="$BG_BLUE$FG_BASE3$GIT_INFO$RESET"
         PS1+=$'\n'
         PS1+="$BG_BASE03$FG_BASE3 $PS1_WD $RESET"
