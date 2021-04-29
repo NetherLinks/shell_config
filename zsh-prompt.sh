@@ -1,7 +1,6 @@
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 __powerline() {
-
     # Unicode symbols
     PS_SYMBOL_DARWIN=''
     PS_SYMBOL_LINUX='$'
@@ -118,29 +117,29 @@ __powerline() {
 
     # https://github.com/riobard/bash-powerline/pull/11/files
     __rvm() {
-      if [ -z "${RUBY_VERSION}" ] ; then
-        return
-      else
-        printf " ${RUBY_VERSION/ruby-/r} "
-      fi
+        if [ -z "${RUBY_VERSION}" ] ; then
+            return
+        else
+            printf " ${RUBY_VERSION/ruby-/r} "
+        fi
     }
 
     __nvm() {
-      if [ -d "$NVM_DIR" ] ; then
-        local nvm_version=$(nvm_version)
-        printf " n${nvm_version/v/} "
-      else
-        return
-      fi
+        if [ -d "$NVM_DIR" ] ; then
+            local nvm_version=$(nvm_version)
+            printf " n${nvm_version/v/} "
+        else
+            return
+        fi
     }
 
 
     __venv() {
-      if [[ -n "$VIRTUAL_ENV" ]]; then
-        printf " py:${VIRTUAL_ENV##*/} "
-      else
-        return
-      fi
+        if [[ -n "$VIRTUAL_ENV" ]]; then
+            printf " py:${VIRTUAL_ENV##*/} "
+        else
+            return
+        fi
     }
 
     setopt PROMPT_SUBST
@@ -148,7 +147,7 @@ __powerline() {
     preexec() { ((cmdcount++)) }
 
     __num() {
-      printf '$cmdcount'
+        printf '$cmdcount'
     }
 
     ps1() {
@@ -162,31 +161,32 @@ __powerline() {
 
         local pwd_check="$(pwd)"
         if [[ $pwd_check == *".git"* ]]; then
-          local PS1_WD="%~"
-          local GITINFO=""
-        else
-          local GIT_INFO="$(__git_info)"
-          if [ -n "$GIT_INFO" ]; then
-            local gitdir_check="$(git rev-parse --show-toplevel)"
-            if [[ "$gitdir_check" = "$pwd_check" ]]; then
-              local PS1_WD="-->"
-            else
-              local PS1_WD=${pwd_check/"${gitdir_check}\/"/""}
-            fi
-          else
             local PS1_WD="%~"
-          fi
+            local GITINFO=""
+        else
+            local GIT_INFO="$(__git_info)"
+            if [ -n "$GIT_INFO" ]; then
+                local gitdir_check="$(git rev-parse --show-toplevel)"
+                if [[ "$gitdir_check" = "$pwd_check" ]]; then
+                    local PS1_WD="-->"
+                else
+                    local PS1_WD=${pwd_check/"${gitdir_check}\/"/""}
+                fi
+            else
+                local PS1_WD="%~"
+            fi
         fi
 
-      PS1="$BG_CYAN$FG_BASE3 %* $RESET"
-      # PS1+="$BG_BASE3$FG_BASE02 %n : $(__num) $RESET"
-      PS1+="$BG_BASE3$FG_BASE02 $(__num) $RESET"
-      PS1+="$BG_BASE03$FG_BASE3 $PS1_WD $RESET"
-      PS1+="$BG_BLUE$FG_BASE3$GIT_INFO$RESET"
-      PS1+="$BG_EXIT$FG_BASE3 $PS_SYMBOL $RESET "
-      RPS1="$BG_ORANGE$FG_BASE3$(__rvm)$RESET"
-      RPS1+="$BG_GREEN$FG_BASE02$(__nvm)$RESET"
-      RPS1+="$BG_BASE3$FG_BASE02$(__venv)$RESET"
+        PS1="$BG_CYAN$FG_BASE3 %* $RESET"
+        # PS1+="$BG_BASE3$FG_BASE02 %n : $(__num) $RESET"
+        PS1+="$BG_BASE3$FG_BASE02 $(__num) $RESET"
+        PS1+="$BG_ORANGE$FG_BASE3$(__rvm)$RESET"
+        PS1+="$BG_GREEN$FG_BASE02$(__nvm)$RESET"
+        PS1+="$BG_BASE3$FG_BASE02$(__venv)$RESET"
+        PS1+="$BG_BLUE$FG_BASE3$GIT_INFO$RESET"
+        PS1+=$'\n'
+        PS1+="$BG_BASE03$FG_BASE3 $PS1_WD $RESET"
+        PS1+="$BG_EXIT$FG_BASE3 $PS_SYMBOL $RESET "
     }
 
     precmd() { ps1 }
